@@ -1,14 +1,13 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import Box from '../Box';
+import Text from '../Text';
 
-const HeaderLayout = styled.h1`
-  width: 100%;
-  height: 15vh;
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-`;
-
-const Header = () => <HeaderLayout>Repo Viewer</HeaderLayout>;
+const Header = () => (
+  <Box as="section">
+    <Text as="h1" textTransform="uppercase">
+      Repo Viewer
+    </Text>
+  </Box>
+);
 
 export default Header;

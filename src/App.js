@@ -1,6 +1,8 @@
 import './App.css';
-import { Route } from 'wouter';
+import { Route, Switch } from 'wouter';
 import Dashboard from './pages/Dashboard';
+import NotFound from './pages/NotFound';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
@@ -10,7 +12,10 @@ function App() {
     <div className="App">
       <Header />
       <Main>
-        <Route path="/" component={Dashboard} />
+        <Switch>
+          <Route path="/" component={Dashboard} />
+          <Route component={NotFound} />
+        </Switch>
       </Main>
       <Footer />
     </div>
