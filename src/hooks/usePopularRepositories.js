@@ -30,7 +30,7 @@ const usePopularRepositories = (pageNum = 1) => {
         if (data instanceof Error) {
           setError(data);
         } else {
-          setRepos(data);
+          setRepos(data.items);
           setError(null);
         }
       })
@@ -41,7 +41,7 @@ const usePopularRepositories = (pageNum = 1) => {
     return () => {};
   }, [pageNum]);
 
-  return [repos, loading, error];
+  return { repos, loading, error };
 };
 
 export default usePopularRepositories;

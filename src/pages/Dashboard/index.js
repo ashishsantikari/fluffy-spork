@@ -9,8 +9,7 @@ import Pagination from "../../components/Pagination";
 
 const Dashboard = () => {
   const [page, setPage] = React.useState(1);
-  const [data, loading, err] = usePopularRepositories(page);
-  const { items: repos } = data;
+  const { repos, loading, err } = usePopularRepositories(page);
 
   const goToNextPage = () => {
     setPage((page) => page + 1);
@@ -22,7 +21,7 @@ const Dashboard = () => {
   return (
     <Box>
       <Box paddingY="20px">
-        <Text as="h2" textDecoration="underline">
+        <Text as="h2" textDecoration="underline" title="headline">
           Most popular repositories of the week
         </Text>
       </Box>
@@ -55,17 +54,16 @@ const Dashboard = () => {
             </Text>
           </Box>
         )}
-        {repos &&
-          repos.map((repo) => (
-            <ListItem paddingY="15px" key={repo.id}>
-              <RepoDetail
-                name={repo.name}
-                description={repo.description}
-                stars={repo.stargazers_count || 0}
-                link={repo.html_url}
-              />
-            </ListItem>
-          ))}
+        {repos.map((repo) => (
+          <ListItem paddingY="15px" key={repo.id}>
+            <RepoDetail
+              name={repo.name}
+              description={repo.description}
+              stars={repo.stargazers_count || 0}
+              link={repo.html_url}
+            />
+          </ListItem>
+        ))}
       </List>
       <Pagination
         inProgress={loading}
