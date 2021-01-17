@@ -1,16 +1,17 @@
 import Text from "../../components/Text";
 import Box from "../../components/Box";
-import Link from "../../components/Link";
+import ExternalLink from "../../components/ExternalLink";
+import Page from "../../components/Page";
 
 const NotFound = () => (
-  <Box>
+  <Page>
     <Box paddingY="10px">
       <Text>Oh no! We are having a bad day today. Please try again!!</Text>
     </Box>
     <Box>
-      <Link href="/">Click here</Link> to go back to home.
+      <ExternalLink href="/">Click here</ExternalLink> to go back to home.
     </Box>
-  </Box>
+  </Page>
 );
 
 export default NotFound;

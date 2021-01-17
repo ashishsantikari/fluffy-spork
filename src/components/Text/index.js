@@ -1,5 +1,12 @@
 import styled from "@emotion/styled";
-import { system, typography, space, compose, color } from "styled-system";
+import {
+  system,
+  typography,
+  space,
+  compose,
+  color,
+  layout,
+} from "styled-system";
 
 // eslint-disable-next-line no-unused-vars
 const textDecoration = system({
@@ -18,6 +25,7 @@ const Text = styled.span(
     typography,
     space,
     color,
+    layout,
     system({
       textDecoration: true,
       textTransform: true,

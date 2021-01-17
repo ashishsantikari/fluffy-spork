@@ -6,8 +6,26 @@ import {
   border,
   background,
   color,
+  system,
 } from "styled-system";
 
-const Box = styled.div(compose(layout, space, border, background, color));
+// eslint-disable-next-line no-unused-vars
+const boxSizing = system({
+  prop: "boxSizing",
+  cssProp: "boxSizing",
+});
+
+const Box = styled.div(
+  compose(
+    layout,
+    space,
+    border,
+    background,
+    color,
+    system({
+      boxSizing: true,
+    })
+  )
+);
 
 export default Box;

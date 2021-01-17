@@ -2,7 +2,7 @@ import produce from "immer";
 import useLocalStorage from "./useLocalStorage";
 import { features } from "../features";
 
-const useFavouriates = () => {
+const useFavourites = () => {
   const [data, setData] = useLocalStorage(features.favRepoStorageKey);
 
   const setFavouriates = ({ id, name, description, stars, link }) => {
@@ -22,4 +22,4 @@ const useFavouriates = () => {
   return [data, setFavouriates];
 };
 
-export default useFavouriates;
+export default useFavourites;

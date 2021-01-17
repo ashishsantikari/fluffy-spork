@@ -11,10 +11,7 @@ const Pagination = ({
 }) => {
   const isFirstPage = currentPage === 1;
   return (
-    <Flex justifyContent="flex-start">
-      <Flex marginRight="10px" paddingTop="5px" alignItems="center">
-        <Text as="span">Page {currentPage}</Text>
-      </Flex>
+    <Flex justifyContent="space-between">
       <Button
         padding="5px"
         marginRight="20px"
@@ -24,6 +21,9 @@ const Pagination = ({
       >
         Previous
       </Button>
+      <Flex marginRight="10px" paddingTop="5px" alignItems="center">
+        <Text as="span">Page {currentPage}</Text>
+      </Flex>
       <Button
         padding="5px"
         width="80px"

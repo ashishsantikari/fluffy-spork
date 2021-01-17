@@ -14,6 +14,10 @@ const Footer = () => (
       <a href="https://icon54.com/" title="Pixel perfect">
         Pixel perfect
       </a>{" "}
+      and{" "}
+      <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">
+        Dave Gandy
+      </a>{" "}
       <Text color="gray">from </Text>
       <a href="https://www.flaticon.com/" title="Flaticon">
         {" "}

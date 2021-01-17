@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { HTTPClient } from "../lib/HTTPClient";
+import { HTTPClient, HTTPClientError } from "../lib/HTTPClient";
 import { resourceType } from "../enums/resources";
 
 const usePopularRepositories = (pageNum = 1) => {
   const [repos, setRepos] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
 
   const getDateQueryParam = () => {
@@ -17,6 +17,16 @@ const usePopularRepositories = (pageNum = 1) => {
   };
 
   useEffect(() => {
+    function formatResponse(repoList) {
+      return repoList.map((repo) => ({
+        id: repo.id,
+        name: repo.name,
+        description: repo.description,
+        stars: repo.stargazers_count,
+        link: repo.html_url,
+      }));
+    }
+
     // TODO simplify this url thingy
     const HOST_URL = "https://api.github.com";
     const fetchRepoURL = `${HOST_URL}/search/${
@@ -27,10 +37,10 @@ const usePopularRepositories = (pageNum = 1) => {
     httpClient
       .get(fetchRepoURL, {}, () => setLoading(true))
       .then((data) => {
-        if (data instanceof Error) {
+        if (data instanceof HTTPClientError) {
           setError(data);
         } else {
-          setRepos(data.items);
+          setRepos(formatResponse(data.items));
           setError(null);
         }
       })
