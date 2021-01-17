@@ -1,3 +1,3 @@
 export const resourceType = {
-  repositories: 'repositories',
+  repositories: "repositories",
 };

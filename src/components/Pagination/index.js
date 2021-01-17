@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '../Button';
-import Flex from '../Flex';
-import Text from '../Text';
+import React from "react";
+import Button from "../Button";
+import Flex from "../Flex";
+import Text from "../Text";
 
 const Pagination = ({
   inProgress,

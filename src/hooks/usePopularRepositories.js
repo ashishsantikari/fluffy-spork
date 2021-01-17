@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { HTTPClient } from '../lib/HTTPClient';
-import { resourceType } from '../enums/resources';
+import { useState, useEffect } from "react";
+import { HTTPClient } from "../lib/HTTPClient";
+import { resourceType } from "../enums/resources";
 
 const usePopularRepositories = (pageNum = 1) => {
   const [repos, setRepos] = useState([]);
@@ -18,7 +18,7 @@ const usePopularRepositories = (pageNum = 1) => {
 
   useEffect(() => {
     // TODO simplify this url thingy
-    const HOST_URL = 'https://api.github.com';
+    const HOST_URL = "https://api.github.com";
     const fetchRepoURL = `${HOST_URL}/search/${
       resourceType.repositories
     }?q=created:${getDateQueryParam()}&sort=stars&order=desc&page=${pageNum}`;

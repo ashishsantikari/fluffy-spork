@@ -1,11 +1,11 @@
-import React from 'react';
-import usePopularRepositories from '../../hooks/usePopularRepositories';
-import RepoDetail from '../../components/RepoDetail';
-import Text from '../../components/Text';
-import Box from '../../components/Box';
-import List from '../../components/List';
-import { ListItem } from '../../components/List/ListItem';
-import Pagination from '../../components/Pagination';
+import React from "react";
+import usePopularRepositories from "../../hooks/usePopularRepositories";
+import RepoDetail from "../../components/RepoDetail";
+import Text from "../../components/Text";
+import Box from "../../components/Box";
+import List from "../../components/List";
+import { ListItem } from "../../components/List/ListItem";
+import Pagination from "../../components/Pagination";
 
 const Dashboard = () => {
   const [page, setPage] = React.useState(1);

@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { layout, space, color, typography } from 'styled-system';
+import styled from "@emotion/styled";
+import { layout, space, color, typography } from "styled-system";
 
 const Button = styled.button(layout, space, color, typography);
 

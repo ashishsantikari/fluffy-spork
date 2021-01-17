@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import {
   flexbox,
   layout,
@@ -7,7 +7,7 @@ import {
   border,
   background,
   color,
-} from 'styled-system';
+} from "styled-system";
 
 const Flex = styled.div`
   display: flex;

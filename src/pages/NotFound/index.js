@@ -1,6 +1,6 @@
-import Text from '../../components/Text';
-import Box from '../../components/Box';
-import Link from '../../components/Link';
+import Text from "../../components/Text";
+import Box from "../../components/Box";
+import Link from "../../components/Link";
 
 const NotFound = () => (
   <Box>

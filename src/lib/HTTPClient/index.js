@@ -6,7 +6,7 @@ export class HTTPClientError extends Error {
       Error.captureStackTrace(this, HTTPClientError);
     }
 
-    this.name = 'HTTPClientError';
+    this.name = "HTTPClientError";
     this.status = status;
     this.message = message;
   }
@@ -23,8 +23,8 @@ export class HTTPClient {
   }
 
   _defaultHeaders() {
-    this._headers.set('Content-Type', 'application/json');
-    this._headers.set('Accept', 'application/vnd.github.v3+json');
+    this._headers.set("Content-Type", "application/json");
+    this._headers.set("Accept", "application/vnd.github.v3+json");
   }
 
   _errorHandler(response) {
@@ -60,20 +60,20 @@ export class HTTPClient {
   }
 
   get(url, headers = {}, execFn) {
-    if (execFn && typeof execFn === 'function') execFn();
+    if (execFn && typeof execFn === "function") execFn();
     const reqHeaders = new Headers();
 
     this._headers.forEach((value, key) => {
       reqHeaders.set(key, value);
     });
 
-    if (headers && typeof headers === 'object') {
+    if (headers && typeof headers === "object") {
       Object.entries(headers).forEach(([key, value]) => {
         reqHeaders.set(key, value);
       });
     }
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: reqHeaders,
     };
     return this._call(url, options);

@@ -1,8 +1,8 @@
-import React from 'react';
-import Box from '../Box';
-import Flex from '../Flex';
-import Link from '../Link';
-import Text from '../Text';
+import React from "react";
+import Box from "../Box";
+import Flex from "../Flex";
+import Link from "../Link";
+import Text from "../Text";
 
 const RepoDetail = ({ name, description, stars, link }) => {
   return (
@@ -13,12 +13,12 @@ const RepoDetail = ({ name, description, stars, link }) => {
             {name}
           </Link>
           <Text color="gray" fontSize="22px">
-            {' '}
+            {" "}
             with {stars} Stars
           </Text>
         </Box>
       </Flex>
-      <Text fontSize="20px">{description || 'No description provided'}</Text>
+      <Text fontSize="20px">{description || "No description provided"}</Text>
     </Box>
   );
 };

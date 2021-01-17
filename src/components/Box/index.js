@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import {
   layout,
   space,
@@ -6,7 +6,7 @@ import {
   border,
   background,
   color,
-} from 'styled-system';
+} from "styled-system";
 
 const Box = styled.div(compose(layout, space, border, background, color));
 
