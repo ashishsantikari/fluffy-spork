@@ -1,32 +1,17 @@
 import React from "react";
-import produce from "immer";
 import RepoDetail from "../../components/RepoDetail";
 import Text from "../../components/Text";
 import Box from "../../components/Box";
 import List from "../../components/List";
 import { ListItem } from "../../components/List/ListItem";
 import Pagination from "../../components/Pagination";
-import useLocalStorage from "../../hooks/useLocalStorage";
 import usePopularRepositories from "../../hooks/usePopularRepositories";
+import useFavouriates from "../../hooks/useFavouriates";
 
 const Dashboard = () => {
   const [page, setPage] = React.useState(1);
   const { repos, loading, err } = usePopularRepositories(page);
-  const [storedValue, setStoredValue] = useLocalStorage("fav-repos");
-
-  const toggleFavouriate = ({ id, name, description, stars, link }) => {
-    const item = { id, name, description, stars, link };
-    setStoredValue(
-      produce((draft) => {
-        const idx = draft.findIndex((item) => item.id === id);
-        if (idx > -1) {
-          draft.splice(idx, 1);
-        } else {
-          draft.push(item);
-        }
-      })
-    );
-  };
+  const [favouriates, setFavouriates] = useFavouriates();
 
   const goToNextPage = () => {
     setPage((page) => page + 1);
@@ -36,7 +21,7 @@ const Dashboard = () => {
   };
 
   const isFavouriate = (repoId) => {
-    return storedValue.some((repo) => repo.id === repoId);
+    return favouriates.some((repo) => repo.id === repoId);
   };
 
   return (
@@ -78,14 +63,14 @@ const Dashboard = () => {
           </Box>
         )}
         {repos.map((repo) => (
-          <ListItem paddingY="15px" key={repo.id}>
+          <ListItem key={repo.id}>
             <RepoDetail
               id={repo.id}
               name={repo.name}
               description={repo.description}
               stars={repo.stargazers_count || 0}
               link={repo.html_url}
-              toggleFavouriate={toggleFavouriate}
+              toggleFavouriate={setFavouriates}
               isFavouriate={isFavouriate(repo.id)}
             />
           </ListItem>

@@ -27,7 +27,7 @@ const RepoDetail = ({
   isFavouriate,
 }) => {
   return (
-    <Flex>
+    <Flex paddingY="15px">
       <Box padding="5px">
         {isFavouriate ? (
           <RedStarLogo
