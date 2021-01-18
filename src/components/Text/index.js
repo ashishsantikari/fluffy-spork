@@ -16,8 +16,14 @@ const textDecoration = system({
 
 // eslint-disable-next-line no-unused-vars
 const textTransform = system({
-  props: "textTransform",
+  prop: "textTransform",
   cssProp: "textTransform",
+});
+
+// eslint-disable-next-line no-unused-vars
+const outline = system({
+  prop: "outline",
+  cssProp: "outline",
 });
 
 const Text = styled.span(
@@ -29,6 +35,7 @@ const Text = styled.span(
     system({
       textDecoration: true,
       textTransform: true,
+      outline: true,
     })
   )
 );
