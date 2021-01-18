@@ -13,12 +13,12 @@ const Header = () => (
       </Text>
     </Box>
     <Flex width="50%" justifyContent="flex-end" alignItems="center">
-      <Link to="/" paddingX="10px">
-        Dashboard
-      </Link>
-      <Link to="/likes" paddingX="10px">
-        View my favouriates
-      </Link>
+      <Box paddingRight="10px">
+        <Link to="/">Dashboard</Link>
+      </Box>
+      <Box>
+        <Link to="/likes">View my favouriates</Link>
+      </Box>
     </Flex>
   </Flex>
 );
