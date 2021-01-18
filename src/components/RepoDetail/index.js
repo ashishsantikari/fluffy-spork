@@ -35,10 +35,12 @@ const RepoDetail = ({
       border={border}
       borderRadius={borderRadius}
       boxShadow={boxShadow}
+      data-testid={`repo-detail-${id}`}
     >
       <Flex justifyContent="center" alignItems="center" paddingX="15px">
         {isFavouriate ? (
           <RedStarLogo
+            title="ummark-favourite"
             height="32px"
             width="32px"
             onClick={() =>
@@ -47,6 +49,7 @@ const RepoDetail = ({
           />
         ) : (
           <BlackStarLogo
+            title="mark-favourite"
             height="32px"
             width="32px"
             onClick={() =>
