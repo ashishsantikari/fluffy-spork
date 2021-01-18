@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { HTTPClient, HTTPClientError } from "../lib/HTTPClient";
 import { resourceType } from "../enums/resources";
+import { features } from "../features";
 
 const usePopularRepositories = (pageNum = 1) => {
   const [repos, setRepos] = useState([]);
@@ -27,15 +28,17 @@ const usePopularRepositories = (pageNum = 1) => {
       }));
     }
 
-    // TODO simplify this url thingy
-    const HOST_URL = "https://api.github.com";
-    const fetchRepoURL = `${HOST_URL}/search/${
-      resourceType.repositories
-    }?q=created:${getDateQueryParam()}&sort=stars&order=desc&page=${pageNum}`;
+    function createURL() {
+      const { apiHost: host } = features;
+      const { repositories: resource } = resourceType;
+      const dt = getDateQueryParam();
+      return `${host}/search/${resource}?q=created:${dt}&sort=stars&order=desc&page=${pageNum}`;
+    }
+    const apiURL = createURL();
 
     const httpClient = new HTTPClient();
     httpClient
-      .get(fetchRepoURL, {}, () => setLoading(true))
+      .get(apiURL, {}, () => setLoading(true))
       .then((data) => {
         if (data instanceof HTTPClientError) {
           setError(data);
