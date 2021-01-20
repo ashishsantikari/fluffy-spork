@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFavourites from "../../hooks/useFavourites";
 import usePopularRepositories from "../../hooks/usePopularRepositories";
+import useLanguages from "../../hooks/useLanguages";
 import Pagination from "../../components/Pagination";
 import Text from "../../components/Text";
 import Box from "../../components/Box";
@@ -8,7 +9,6 @@ import Title from "../../components/Title";
 import RepoList from "../../components/RepoList";
 import Page from "../../components/Page";
 import { getDateParam } from "../../lib/queryParams";
-import useLanguages from "../../hooks/useLanguages";
 import Dropdown from "../../components/Dropdown";
 
 const Dashboard = () => {

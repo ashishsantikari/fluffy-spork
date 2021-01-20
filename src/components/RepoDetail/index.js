@@ -40,7 +40,7 @@ const RepoDetail = ({
       <Flex justifyContent="center" alignItems="center" paddingX="15px">
         {isFavouriate ? (
           <RedStarLogo
-            title="ummark-favourite"
+            title="unmark-favourite"
             height="32px"
             width="32px"
             onClick={() =>

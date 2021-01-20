@@ -5,9 +5,9 @@ import { features } from "../features";
 import { getSearchParam } from "../lib/queryParams";
 
 const usePopularRepositories = (queryParams = {}, pageNum = 1) => {
-  const [repos, setRepos] = useState([]);
-  const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  const [repos, setRepos] = useState([]);
 
   useEffect(() => {
     function formatResponse(repoList) {
@@ -31,22 +31,19 @@ const usePopularRepositories = (queryParams = {}, pageNum = 1) => {
 
     const httpClient = new HTTPClient();
 
-    httpClient
-      .get(createURL(), {}, () => setLoading(true))
-      .then((data) => {
-        // eslint-disable-next-line default-case
-        switch (data instanceof HTTPClientError) {
-          case true:
-            setError(data);
-            break;
-          default:
-            setRepos(formatResponse(data.items));
-            setError(null);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    setLoading(true);
+    httpClient.get(createURL(), {}).then((data) => {
+      switch (data instanceof HTTPClientError) {
+        case true:
+          setError(data);
+          break;
+        default:
+          setRepos(formatResponse(data.items));
+          setError(null);
+      }
+      setLoading(false);
+      return data;
+    });
   }, [queryParams, pageNum]);
 
   return { repos, loading, error };
