@@ -10,6 +10,7 @@ import RepoList from "../../components/RepoList";
 import Page from "../../components/Page";
 import { getDateParam } from "../../lib/queryParams";
 import Dropdown from "../../components/Dropdown";
+import InfoMessage from "../../components/InfoMessage";
 
 const Dashboard = () => {
   const [page, setPage] = React.useState(1);
@@ -100,6 +101,10 @@ const Dashboard = () => {
         repos={repos}
         isFavouriate={isFavouriate}
         setFavouriates={setFavourites}
+        infoMessage={() =>
+          repos.length === 0 &&
+          !loading && <InfoMessage message="No repositories found" />
+        }
       />
       <Pagination
         inProgress={loading}

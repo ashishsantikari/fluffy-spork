@@ -4,6 +4,7 @@ import Title from "../../components/Title";
 import RepoList from "../../components/RepoList";
 import useIsFavourite from "../../hooks/useIsFavourite";
 import Page from "../../components/Page";
+import InfoMessage from "../../components/InfoMessage";
 
 const Favourite = () => {
   const [favourites, setFavourites] = useFavourites();
@@ -16,6 +17,11 @@ const Favourite = () => {
         repos={favourites}
         isFavouriate={isFavourite}
         setFavouriates={setFavourites}
+        infoMessage={() =>
+          favourites.length === 0 && (
+            <InfoMessage message="Your favourite list is empty" />
+          )
+        }
       />
     </Page>
   );
