@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-const useLocalStorage = (key) => {
+const useLocalStorage = (key, defaultData = []) => {
   const fetchData = (key) => {
     const data = window.localStorage.getItem(key);
-    if (!data) return [];
+    if (!data) return defaultData;
     return JSON.parse(data);
   };
 

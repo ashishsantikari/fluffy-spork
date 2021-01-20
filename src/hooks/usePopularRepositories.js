@@ -2,20 +2,12 @@ import { useState, useEffect } from "react";
 import { HTTPClient, HTTPClientError } from "../lib/HTTPClient";
 import { resourceType } from "../enums/resources";
 import { features } from "../features";
+import { getSearchParam } from "../lib/queryParams";
 
-const usePopularRepositories = (pageNum = 1) => {
-  const [repos, setRepos] = useState([]);
-  const [error, setError] = useState();
+const usePopularRepositories = (queryParams = {}, pageNum = 1) => {
   const [loading, setLoading] = useState(false);
-
-  const getDateQueryParam = () => {
-    const date = new Date();
-    date.setDate(date.getDate() - 7);
-    const month = date.getMonth() + 1;
-    const mm = month < 10 ? `0${month}` : month;
-    const dt = `${date.getFullYear()}-${mm}-${date.getDate()}`;
-    return decodeURI(`>${dt}`);
-  };
+  const [error, setError] = useState();
+  const [repos, setRepos] = useState([]);
 
   useEffect(() => {
     function formatResponse(repoList) {
@@ -25,34 +17,34 @@ const usePopularRepositories = (pageNum = 1) => {
         description: repo.description,
         stars: repo.stargazers_count,
         link: repo.html_url,
+        language: repo.language,
       }));
     }
 
     function createURL() {
       const { apiHost: host } = features;
       const { repositories: resource } = resourceType;
-      const dt = getDateQueryParam();
-      return `${host}/search/${resource}?q=created:${dt}&sort=stars&order=desc&page=${pageNum}`;
+      return `${host}/search/${resource}?q=${getSearchParam(
+        queryParams
+      )}&sort=stars&order=desc&page=${pageNum}`;
     }
-    const apiURL = createURL();
 
     const httpClient = new HTTPClient();
-    httpClient
-      .get(apiURL, {}, () => setLoading(true))
-      .then((data) => {
-        if (data instanceof HTTPClientError) {
+
+    setLoading(true);
+    httpClient.get(createURL(), {}).then((data) => {
+      switch (data instanceof HTTPClientError) {
+        case true:
           setError(data);
-        } else {
+          break;
+        default:
           setRepos(formatResponse(data.items));
           setError(null);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-
-    return () => {};
-  }, [pageNum]);
+      }
+      setLoading(false);
+      return data;
+    });
+  }, [queryParams, pageNum]);
 
   return { repos, loading, error };
 };

@@ -59,8 +59,7 @@ export class HTTPClient {
       });
   }
 
-  get(url, headers = {}, execFn) {
-    if (execFn && typeof execFn === "function") execFn();
+  get(url, headers = {}) {
     const reqHeaders = new Headers();
 
     this._headers.forEach((value, key) => {
