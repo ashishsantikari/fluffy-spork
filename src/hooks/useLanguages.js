@@ -6,7 +6,7 @@ const useLanguages = () => {
     features.languageStorageKey
   );
 
-  return [languages, setLanguages];
+  return { languages, setLanguages };
 };
 
 export default useLanguages;

@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const { repos, loading, error } = usePopularRepositories(queryParams, page);
   const [favourites, setFavourites] = useFavourites();
-  const [languages] = useLanguages();
+  const { languages, setLanguages } = useLanguages();
 
   const filterByLanguage = (event) => {
     setQueryParams((store) => ({
@@ -45,9 +45,25 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    function saveLanguages(repoList) {
+      setLanguages((languages) => {
+        const fetchedLang = repoList
+          .map((repo) => repo.language)
+          .filter(Boolean);
+        const newList = [...languages];
+        fetchedLang.forEach((lang) => {
+          if (newList.indexOf(lang) < 0) newList.push(lang);
+        });
+        return newList;
+      });
+    }
+
+    if (repos.length) {
+      saveLanguages(repos);
+    }
     // TODO Quick hack. Smooth animation required.
     window.scrollTo(0, 0);
-  }, [repos, error]);
+  }, [repos, error, setLanguages]);
 
   return (
     <Page>
